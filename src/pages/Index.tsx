@@ -1,5 +1,5 @@
 import bananaLogo from "@/assets/banana-logo.jpg";
-import fruit3dLogo from "@/assets/fruit3d-logo.jpg";
+import fruit3dLogo from "@/assets/fruit3d-logo.png";
 
 const CodeBlock = ({ children }: { children: string }) => (
   <pre className="bg-code-bg text-code-text p-4 rounded-lg overflow-x-auto text-sm font-mono my-4">
