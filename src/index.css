@@ -19,8 +19,8 @@ All colors MUST be HSL.
     --popover: 30 25% 98%;
     --popover-foreground: 30 10% 15%;
 
-    --primary: 45 95% 55%; /* Warm yellow from banana */
-    --primary-foreground: 30 10% 10%;
+    --primary: 350 75% 55%; /* Warm coral/pink for better readability */
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 28 45% 88%; /* Warm cream */
     --secondary-foreground: 30 10% 20%;
