@@ -33,12 +33,33 @@ const Index = () => {
             <h3 className="text-xl font-semibold text-primary mb-6">
               Build and Share Web3D Interactivity
             </h3>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              This spec makes it easy to share JavaScript-based interactivity for glTF objects. 
-              We provide a common standard so it's easy to install reusable 3D objects into new 
-              projects and port code between 3D rendering engines.
+            <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+              Banana3D is a spec and toolkit for packaging reusable JavaScript interactivity with
+              glTF 3D models, so you can drop smart 3D objects into any web project and have them
+              "just work".
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+              It provides a common standard so it is easy to install reusable 3D objects into new
+              projects, share them via an npm-style registry, and port code between different Web3D
+              rendering engines.
+            </p>
+            <p className="text-base text-muted-foreground leading-relaxed">
+              Designed for web and 3D developers who want to create and reuse interactive objects
+              without rewriting boilerplate for each engine or project.
             </p>
           </div>
+
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-4 pb-2 border-b border-border">
+              What you can do with Banana3D
+            </h2>
+            <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
+              <li>Install reusable smart 3D objects into any web project using simple CLI commands.</li>
+              <li>Package your own glTF models together with interaction code and configuration.</li>
+              <li>Edit, preview, and save object configurations in a browser-based editor.</li>
+              <li>Publish and share objects through an npm-style registry for others to reuse.</li>
+            </ul>
+          </section>
 
           {/* Getting Started */}
           <section className="mb-12">
@@ -59,30 +80,38 @@ const Index = () => {
             </p>
 
             <h4 className="text-lg font-semibold text-foreground mt-8 mb-3">
-              Try installing an example smart object:
+              Install an example smart object:
             </h4>
             <CodeBlock>{`npx b3d install running-shoe
-> No existing web project found. 
-> "running-shoe" v1.2.1 installed in the current directory. 
-> Run "npx b3d editor to start the object editor in a web browser"`}</CodeBlock>
+> No existing web project found.
+> "running-shoe" v1.2.1 installed in the current directory.
+> Run "npx b3d editor" to start the object editor in a web browser`}</CodeBlock>
+            <p className="text-muted-foreground mb-4">
+              This installs the <span className="font-mono text-sm">running-shoe</span> example into the
+              current directory so you can explore how a smart object is structured.
+            </p>
 
             <h4 className="text-lg font-semibold text-foreground mt-8 mb-3">
-              Try installing in an existing web project:
+              Install in an existing web project:
             </h4>
             <CodeBlock>{`cd src/components
 npx b3d install running-shoe
 > Found package.json in ../../package.json.
-> Tech stack discovered: 
+> Tech stack discovered:
 > next 16.0.3
 > react 19.2.0
 > @react-three/drei ^10.7.7
 > @react-three/fiber ^9.4.0
-> Created "running-shoe" directory".
-> "running-shoe" v1.2.1 installed. 
-> Run "npx b3d editor to start the object editor in a web browser"`}</CodeBlock>
+> Created "running-shoe" directory.
+> "running-shoe" v1.2.1 installed.
+> Run "npx b3d editor" to start the object editor in a web browser`}</CodeBlock>
+            <p className="text-muted-foreground mb-4">
+              Here Banana3D detects your existing stack and creates a <span className="font-mono text-sm">running-shoe</span>
+              directory inside your components so you can use it directly in your app.
+            </p>
 
             <h4 className="text-lg font-semibold text-foreground mt-8 mb-3">
-              Initialise a brand new project:
+              Initialize a new project:
             </h4>
             <CodeBlock>{`npx b3d init
 > Confirm this is the package.json associated with your project
@@ -92,9 +121,13 @@ npx b3d install running-shoe
 
 > Generated b3d.json
 > Use "npx b3d editor" to start the editor`}</CodeBlock>
+            <p className="text-muted-foreground mb-4">
+              This links Banana3D to your project, generates a <span className="font-mono text-sm">b3d.json</span> config,
+              and prepares your workspace for installing and publishing smart objects.
+            </p>
 
             <h4 className="text-lg font-semibold text-foreground mt-8 mb-3">
-              Start the editor:
+              Start the Banana3D editor:
             </h4>
             <CodeBlock>{`npx b3d editor
 > Confirm this is the editor source code:
@@ -103,14 +136,22 @@ npx b3d install running-shoe
 > No (n)
 
 > Starting server at: http://localhost:4001`}</CodeBlock>
+            <p className="text-muted-foreground mb-4">
+              This launches a local browser-based editor where you can edit, preview, and save
+              configuration for your smart objects.
+            </p>
 
             <h4 className="text-lg font-semibold text-foreground mt-8 mb-3">
-              Publish:
+              Publish your object:
             </h4>
             <CodeBlock>{`npx b3d login
 npx b3d search running-shoe
 > No packages called "running-shoe"
 npx b3d publish --access public`}</CodeBlock>
+            <p className="text-muted-foreground mb-4">
+              Once you are happy with your object, log in and publish so others can install it from
+              the registry like any other package.
+            </p>
           </section>
 
           {/* How does it work */}
@@ -119,9 +160,10 @@ npx b3d publish --access public`}</CodeBlock>
               How does it work?
             </h2>
             <p className="text-muted-foreground mb-6">
-              A npm-style registry is used to map packages, to code. Code can be written for 
-              multiple web 3D runtimes. AI can be used to generate implementations for rendering 
-              engines that don't exist yet.
+              An npm-style registry maps package names to runtime implementations. Each package can
+              include code for multiple Web3D runtimes (for example, different engines or
+              frameworks). In future, AI can be used to generate new runtime adapters for rendering
+              engines that do not exist yet.
             </p>
             <p className="text-muted-foreground mb-6">
               Developers can optionally create an editing interface for changing the configuration 
@@ -131,6 +173,10 @@ npx b3d publish --access public`}</CodeBlock>
             <h4 className="text-lg font-semibold text-foreground mt-8 mb-3">
               Typical folder structure:
             </h4>
+            <p className="text-muted-foreground mb-3">
+              Here is an example layout for a reusable <span className="font-mono text-sm">shoe</span> smart object
+              inside your project:
+            </p>
             <CodeBlock>{`components/
   shoe/
     editor.jsx
@@ -142,11 +188,11 @@ npx b3d publish --access public`}</CodeBlock>
             <div className="bg-secondary/50 rounded-lg p-6 mt-6">
               <p className="text-foreground font-medium mb-3">The folder contains:</p>
               <ul className="space-y-2 text-muted-foreground">
-                <li><span className="font-mono text-sm text-primary">editor.jsx</span> - An editor for developers to edit, preview and save configuration for how it should look and behave.</li>
-                <li><span className="font-mono text-sm text-primary">shoe.glb</span> - The glTF file.</li>
-                <li><span className="font-mono text-sm text-primary">shoe.jsx</span> - The code for interactivity</li>
-                <li><span className="font-mono text-sm text-primary">b3d.config.json</span> - Any configuration used by the code.</li>
-                <li><span className="font-mono text-sm text-primary">b3d.json</span> - Code dependencies. Required if you want to publish and share.</li>
+                <li><span className="font-mono text-sm text-primary">editor.jsx</span> - A development editor to edit, preview, and save configuration for how the object should look and behave.</li>
+                <li><span className="font-mono text-sm text-primary">shoe.glb</span> - The glTF 3D asset file.</li>
+                <li><span className="font-mono text-sm text-primary">shoe.jsx</span> - The runtime code that provides interactivity.</li>
+                <li><span className="font-mono text-sm text-primary">b3d.config.json</span> - Runtime configuration used by the code (for example, presets or debug flags).</li>
+                <li><span className="font-mono text-sm text-primary">b3d.json</span> - Package metadata and code dependencies, required if you want to publish and share.</li>
               </ul>
             </div>
 
@@ -154,15 +200,15 @@ npx b3d publish --access public`}</CodeBlock>
               Code Dependencies example config:
             </h4>
             <p className="text-muted-foreground mb-4">
-              This code is packaged up with the glTF file so it can easily be unpacked and run. 
-              We use the npm system for managing dependencies, so if they are already installed 
-              in the project, it doesn't install them again.
+              This code is packaged with the glTF file so it can easily be unpacked and run. We use
+              the npm ecosystem for managing dependencies, so if they are already installed in the
+              host project, they are not installed again.
             </p>
             <CodeBlock>{`{
   "start": "main.jsx",
   "dependencies": {
-    "react-three-fiber": "^2.3.2"
-    "three.js": "^2.3.2"
+    "@react-three/fiber": "^9.4.0",
+    "three": "^0.161.0"
   }
 }`}</CodeBlock>
 
@@ -183,7 +229,8 @@ npx b3d publish --access public`}</CodeBlock>
               Request for Comments
             </h2>
             <p className="text-muted-foreground">
-              This spec is in active development. Feedback? Submit here.
+              This spec is in active development. Feedback, ideas, or concerns? Open an issue on our
+              repository or get in touch so we can incorporate your use cases.
             </p>
           </section>
 
@@ -199,17 +246,20 @@ npx b3d publish --access public`}</CodeBlock>
                   What happens if I have loads of 3D objects?
                 </h4>
                 <p className="text-muted-foreground">
-                  You can include multiple objects in a single package, but please keep it as minimal as you can.
+                  You can include multiple objects in a single package, but we recommend grouping
+                  related objects together and avoiding very large, monolithic packages. Smaller,
+                  focused packages are faster to install and easier to maintain.
                 </p>
               </div>
 
               <div>
                 <h4 className="text-lg font-semibold text-foreground mb-2">
-                  Don't you know about the glTF Interactivity Spec?
+                  How is this different from the glTF Interactivity Spec?
                 </h4>
                 <p className="text-muted-foreground">
-                  Yes. We felt there was scope to solve the problem in a very different way. This spec aims 
-                  to embrace simplicity, npm for dependencies and the ability for AI to easily generate code.
+                  We are aware of the glTF Interactivity Spec. Banana3D explores a different approach
+                  that embraces simplicity, the npm ecosystem for dependencies, and a structure that
+                  makes it easy for AI tools to generate and maintain code.
                 </p>
               </div>
 
@@ -218,22 +268,23 @@ npx b3d publish --access public`}</CodeBlock>
                   How are new runtime versions created using AI?
                 </h4>
                 <p className="text-muted-foreground">
-                  We still need to workout where the AI code will run - locally or on a remote server. 
-                  Essentially we'll pass the existing runtime version, and target version into an AI and 
-                  get it to generate code. The hard bit is testing to make sure it works in the same way 
-                  as the original version. Got ideas? Get in touch.
+                  This is an experimental direction. We still need to work out where the AI code will
+                  run (locally or on a remote server). The idea is to pass an existing runtime
+                  implementation and a target engine into an AI system and generate a new adapter.
+                  The hard part is robust testing to make sure it behaves like the original version.
+                  Got ideas? Get in touch.
                 </p>
               </div>
 
               <div>
                 <h4 className="text-lg font-semibold text-foreground mb-2">
-                  Why do this at all?
+                  Why create Banana3D?
                 </h4>
                 <p className="text-muted-foreground">
-                  Right now creating and sharing high quality interactive objects is hard work! We want to 
-                  make lots of interactivity objects for everyday items. Why re-invent the wheel each time? 
-                  We want to guide users towards making high quality objects that have better web standards 
-                  for how we create, edit and share interactive 3D objects.
+                  Right now, creating and sharing high quality interactive objects is hard work. We want
+                  to make reusable interactive objects for everyday items without reinventing the wheel
+                  each time. Banana3D aims to guide developers towards high quality objects, with
+                  clearer standards for how we create, edit, and share interactive 3D on the web.
                 </p>
               </div>
             </div>
