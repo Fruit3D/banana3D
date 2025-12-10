@@ -1,11 +1,30 @@
 import bananaLogo from "@/assets/banana-logo.jpg";
 import fruit3dLogo from "@/assets/fruit3d-logo.png";
 
-const CodeBlock = ({ children }: { children: string }) => (
-  <pre className="bg-code-bg text-code-text p-4 rounded-lg overflow-x-auto text-sm font-mono my-4">
-    <code>{children}</code>
-  </pre>
-);
+const CodeBlock = ({ children }: { children: string }) => {
+  const lines = children.split("\n");
+
+  return (
+    <pre className="bg-code-bg text-code-text p-4 rounded-lg overflow-x-auto text-sm font-mono my-4">
+      <code>
+        {lines.map((line, index) => {
+          const isCommand = line.startsWith("$ ");
+          const key = line.length ? line : `empty-${index}`;
+
+          return (
+            <span
+              key={key}
+              style={isCommand ? { color: "#EEBE2F" } : undefined}
+            >
+              {line}
+              {index < lines.length - 1 && "\n"}
+            </span>
+          );
+        })}
+      </code>
+    </pre>
+  );
+};
 
 const Index = () => {
   return (
@@ -82,10 +101,10 @@ const Index = () => {
             <h4 className="text-lg font-semibold text-foreground mt-8 mb-3">
               Install an example smart object:
             </h4>
-            <CodeBlock>{`npx b3d install running-shoe
-> No existing web project found.
-> "running-shoe" v1.2.1 installed in the current directory.
-> Run "npx b3d editor" to start the object editor in a web browser`}</CodeBlock>
+            <CodeBlock>{`$ npx b3d install running-shoe
+No existing web project found.
+"running-shoe" v1.2.1 installed in the current directory.
+Run "npx b3d editor" to start the object editor in a web browser`}</CodeBlock>
             <p className="text-muted-foreground mb-4">
               This installs the <span className="font-mono text-sm">running-shoe</span> example into the
               current directory so you can explore how a smart object is structured.
@@ -94,17 +113,18 @@ const Index = () => {
             <h4 className="text-lg font-semibold text-foreground mt-8 mb-3">
               Install in an existing web project:
             </h4>
-            <CodeBlock>{`cd src/components
-npx b3d install running-shoe
-> Found package.json in ../../package.json.
-> Tech stack discovered:
-> next 16.0.3
-> react 19.2.0
-> @react-three/drei ^10.7.7
-> @react-three/fiber ^9.4.0
-> Created "running-shoe" directory.
-> "running-shoe" v1.2.1 installed.
-> Run "npx b3d editor" to start the object editor in a web browser`}</CodeBlock>
+            <CodeBlock>{`$ cd src/components
+$ npx b3d install running-shoe
+Found package.json in ../../package.json.
+Tech stack discovered:
+next 16.0.3
+react 19.2.0
+@react-three/drei ^10.7.7
+@react-three/fiber ^9.4.0
+Created "running-shoe" directory.
+"running-shoe" v1.2.1 installed.
+Run "npx b3d editor" to start the object editor in a web browser`}
+</CodeBlock>
             <p className="text-muted-foreground mb-4">
               Here Banana3D detects your existing stack and creates a <span className="font-mono text-sm">running-shoe</span>
               directory inside your components so you can use it directly in your app.
@@ -113,14 +133,14 @@ npx b3d install running-shoe
             <h4 className="text-lg font-semibold text-foreground mt-8 mb-3">
               Initialize a new project:
             </h4>
-            <CodeBlock>{`npx b3d init
-> Confirm this is the package.json associated with your project
-> ../../package.json
-> Yes (y)
-> No (n)
+            <CodeBlock>{`$ npx b3d init
+Confirm this is the package.json associated with your project
+../../package.json
+Yes (y)
+No (n)
 
-> Generated b3d.json
-> Use "npx b3d editor" to start the editor`}</CodeBlock>
+Generated b3d.json
+Use "npx b3d editor" to start the editor`}</CodeBlock>
             <p className="text-muted-foreground mb-4">
               This links Banana3D to your project, generates a <span className="font-mono text-sm">b3d.json</span> config,
               and prepares your workspace for installing and publishing smart objects.
@@ -129,13 +149,13 @@ npx b3d install running-shoe
             <h4 className="text-lg font-semibold text-foreground mt-8 mb-3">
               Start the Banana3D editor:
             </h4>
-            <CodeBlock>{`npx b3d editor
-> Confirm this is the editor source code:
-> editor.jsx
-> Yes (y)
-> No (n)
+            <CodeBlock>{`$ npx b3d editor
+Confirm this is the editor source code:
+editor.jsx
+Yes (y)
+No (n)
 
-> Starting server at: http://localhost:4001`}</CodeBlock>
+Starting server at: http://localhost:4001`}</CodeBlock>
             <p className="text-muted-foreground mb-4">
               This launches a local browser-based editor where you can edit, preview, and save
               configuration for your smart objects.
@@ -144,10 +164,10 @@ npx b3d install running-shoe
             <h4 className="text-lg font-semibold text-foreground mt-8 mb-3">
               Publish your object:
             </h4>
-            <CodeBlock>{`npx b3d login
-npx b3d search running-shoe
-> No packages called "running-shoe"
-npx b3d publish --access public`}</CodeBlock>
+            <CodeBlock>{`$ npx b3d login
+$ npx b3d search running-shoe
+No packages called "running-shoe"
+$ npx b3d publish --access public`}</CodeBlock>
             <p className="text-muted-foreground mb-4">
               Once you are happy with your object, log in and publish so others can install it from
               the registry like any other package.
