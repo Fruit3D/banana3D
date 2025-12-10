@@ -1,7 +1,6 @@
 # banana3D
 
-Banana3D is a spec and toolkit for packaging reusable JavaScript interactivity with glTF 3D models, so you can drop smart 3D objects into any web project and have them "just work".
-
+banana3D is a package manager and specification for packaging reusable Web3D objects.
 
 ## How to edit this spec locally
 

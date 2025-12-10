@@ -3,37 +3,60 @@ import Layout from '../layouts/Layout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 ---
 
-<Layout title="Banana3D - A Web3D Smart Object Spec">
+<Layout title="banana3D - A Web3D Smart Object Spec">
   <!-- Title Section -->
   <div class="mb-12">
     <h2 class="text-4xl font-bold text-foreground mb-4">
-      A Web3D Smart Object Spec
+      Specification for Web3D Package Manager
     </h2>
     <h3 class="text-xl font-semibold text-primary mb-6">
       Build and Share Web3D Interactivity
     </h3>
+
+    <div class="mb-6 rounded-xl border border-accent/50 bg-accent/10 px-4 py-3 flex items-start gap-3">
+      <div class="mt-1 text-accent">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="currentColor"
+        >
+          <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 4a1.25 1.25 0 1 1 0 2.5A1.25 1.25 0 0 1 12 6zm1 4v7h-2v-7h2z" />
+        </svg>
+      </div>
+      <p class="text-sm text-foreground leading-relaxed">
+        <span class="font-semibold">Important!</span> This is just an outline specification at the moment - so don't
+        try installing just yet! Please
+        <a
+          href="https://github.com/Fruit3D/banana3D/issues/1"
+        >
+          provide feedback
+        </a>.
+      </p>
+    </div>
+
     <p class="text-lg text-muted-foreground leading-relaxed mb-4">
-      Banana3D is a spec and toolkit for packaging reusable JavaScript interactivity with
-      glTF 3D models, so you can drop smart 3D objects into any web project and have them
-      "just work".
+      banana3D is a package manager and specification for packaging reusable Web3D objects. 
+      You can bundle Web3D code with a 3D glTF file. This means you can drop Web3D objects
+      into any 3D web project and have them "just work".
     </p>
     <p class="text-lg text-muted-foreground leading-relaxed mb-4">
-      It provides a common standard so it is easy to install reusable 3D objects into new
-      projects, share them via an npm-style registry, and port code between different Web3D
-      rendering engines.
+      Web3D objects can be shared via an npm-style registry, and code can be ported between different Web3D
+      rendering engines. AI is used to generate multi-renderer code for seamless integration.
     </p>
     <p class="text-base text-muted-foreground leading-relaxed">
-      Designed for web and 3D developers who want to create and reuse interactive objects
+      Designed for web and 3D developers who want to create and reuse 3D interactivity
       with minimum hassle.
     </p>
   </div>
 
   <section class="mb-12">
     <h2 class="text-2xl font-bold text-foreground mb-4 pb-2 border-b border-border">
-      What you can do with Banana3D
+      What you can do with banana3D
     </h2>
     <ul class="list-disc pl-5 space-y-1 text-muted-foreground">
-      <li>Install reusable smart 3D objects into any web project using simple CLI commands.</li>
+      <li>Install reusable Web3D objects into any web project using simple CLI commands.</li>
       <li>Package your own glTF models together with interaction code and configuration.</li>
       <li>Edit, preview, and save object configurations in a browser-based editor.</li>
       <li>Publish and share objects through an npm-style registry for others to reuse.</li>
@@ -55,58 +78,65 @@ import CodeBlock from '../components/CodeBlock.astro';
       >
         Node.js
       </a>
-      installed.
+      installed. 
     </p>
+    <p class="text-muted-foreground mb-4">Initially we plan to support "porting" across these runtimes and frameworks:</p>
+    <ul class="list-disc pl-5 space-y-1 text-muted-foreground">
+      <li>3D runtimes: three.js, A-Frame, babylon.js</li>
+      <li>Frontend web frameworks: React, React Three Fiber, React Babylonjs</li>
+    </ul>
 
-    <h4 class="text-lg font-semibold text-foreground mt-8 mb-3">
+    <!-- <h4 class="text-lg font-semibold text-foreground mt-8 mb-3">
       Install an example smart object:
     </h4>
     <CodeBlock code={`$ npx b3d install running-shoe
-No existing web project found.
+First time installing, let's get you set-up. 
+No web stack detected. 
+Pick web stack:
+ * three.js / vite
+ * three.js / react-three-fiber
+
+Setting up 
+Installed 
 "running-shoe" v1.2.1 installed in the current directory.
 Run "npx b3d editor" to start the object editor in a web browser`} />
     <p class="text-muted-foreground mb-4">
       This installs the <span class="font-mono text-sm">running-shoe</span> example into the
       current directory so you can explore how a smart object is structured.
-    </p>
-
-    <h4 class="text-lg font-semibold text-foreground mt-8 mb-3">
-      Install in an existing web project:
-    </h4>
-    <CodeBlock code={`$ cd src/components
-$ npx b3d install running-shoe
-Found package.json in ../../package.json.
-Tech stack discovered:
-next 16.0.3
-react 19.2.0
-@react-three/drei ^10.7.7
-@react-three/fiber ^9.4.0
-Created "running-shoe" directory.
-"running-shoe" v1.2.1 installed.
-Run "npx b3d editor" to start the object editor in a web browser`} />
-    <p class="text-muted-foreground mb-4">
-      Here Banana3D detects your existing stack and creates a <span class="font-mono text-sm">running-shoe</span>
-      directory inside your components so you can use it directly in your app.
-    </p>
+    </p> -->
 
     <h4 class="text-lg font-semibold text-foreground mt-8 mb-3">
       Initialize a new project:
     </h4>
     <CodeBlock code={`$ npx b3d init
-Confirm this is the package.json associated with your project
-../../package.json
-Yes (y)
-No (n)
+Found package.json
+Tech stack discovered:
+@react-three/drei ^9.103.0
+@react-three/fiber ^8.15.18
+three ^0.160.0
+Created config file: banana3d.config
 
-Generated b3d.json
-Use "npx b3d editor" to start the editor`} />
+Use "npx b3d install [package-name]" to install your first model`} />
     <p class="text-muted-foreground mb-4">
-      This links Banana3D to your project, generates a <span class="font-mono text-sm">b3d.json</span> config,
-      and prepares your workspace for installing and publishing smart objects.
+      This detects your tech stack and automatically configures your project, ready for first use. 
     </p>
 
     <h4 class="text-lg font-semibold text-foreground mt-8 mb-3">
-      Start the Banana3D editor:
+      Install your first interactive model:
+    </h4>
+    <CodeBlock code={`$ cd src/components
+$ npx b3d install running-shoe
+
+Created "running-shoe" directory in src/app/components.
+
+"running-shoe" v1.2.1 installed.
+Run "npx b3d editor" to start the banana3D editor in a web browser.`} />
+    <p class="text-muted-foreground mb-4">
+      The code is installed along with the glTF file(s), ready to review. 
+    </p>
+
+    <h4 class="text-lg font-semibold text-foreground mt-8 mb-3">
+      Start the banana3D editor:
     </h4>
     <CodeBlock code={`$ npx b3d editor
 Confirm this is the editor source code:
@@ -114,10 +144,12 @@ editor.jsx
 Yes (y)
 No (n)
 
+Created ./banana3d/editor/
+
 Starting server at: http://localhost:4001`} />
     <p class="text-muted-foreground mb-4">
       This launches a local browser-based editor where you can edit, preview, and save
-      configuration for your smart objects.
+      configuration for your Web3D objects. If the developer hasn't provided any editing capability - it will just be a viewer. 
     </p>
 
     <h4 class="text-lg font-semibold text-foreground mt-8 mb-3">
@@ -133,6 +165,78 @@ $ npx b3d publish --access public`} />
     </p>
   </section>
 
+  <!-- Configure your existing project -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-foreground mb-6 pb-2 border-b border-border">
+      Configure your existing project
+    </h2>
+    <p class="text-muted-foreground mb-6">
+      You've already got your project set-up in a particular way. 
+      We'll try and detect your project type and set up the necessary configuration.
+      Here are the details if you want to edit yourself. 
+    </p>
+
+    <CodeBlock code={`{
+  "objects_path": "src/app/components",
+  "public_files": "public/"
+}`} />
+    <div class="bg-secondary/50 rounded-lg p-6 mt-6">
+      <p class="text-foreground font-medium mb-3">The config options are:</p>
+      <ul class="space-y-2 text-muted-foreground">
+        <li><span class="font-mono text-sm text-primary">objects_path</span> - This is where new Web3D interactivity code will be installed</li>
+        <li><span class="font-mono text-sm text-primary">public_files</span> - Where 3D models are served from your web project. Any new glTF models will be copied here during installation</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-foreground mb-6 pb-2 border-b border-border">
+      Guidance for creating your first Web3D object
+    </h2>
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="bg-secondary/40 rounded-lg p-5">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </span>
+          <h3 class="text-base font-semibold text-foreground">You must</h3>
+        </div>
+        <ul class="list-disc pl-5 space-y-2 text-muted-foreground">
+          <li>Create a self contained Typescript module that exports a function that creates the component to be rendered.</li>
+          <li>Test using "npx b3d editor" to make sure it works as expected before publishing.</li>
+        </ul>
+      </div>
+
+      <div class="bg-secondary/40 rounded-lg p-5">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-red-500/10 text-red-600">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </span>
+          <h3 class="text-base font-semibold text-foreground">You must not include code for</h3>
+        </div>
+        <ul class="list-disc pl-5 space-y-2 text-muted-foreground">
+          <li>Scene set-up and environment configuration.</li>
+          <li>Scene lighting, except for lighting created within the object itself (for example, a lamp).</li>
+          <li>Camera movements.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-secondary/30 rounded-lg p-5">
+      <h3 class="text-base font-semibold text-foreground mb-2">Useful tools</h3>
+      <ul class="list-disc pl-5 space-y-1 text-muted-foreground">
+        <li><a href="https://github.com/pmndrs/gltfjsx">gltfjsx</a> for easily generating a <span class="font-mono text-sm">.jsx</span> file based on a glTF file.</li>
+        <li><a href="https://github.com/pmndrs/leva/tree/main">Leva</a> for creating a minimal in-browser editor for tweaking configuration values.</li>
+      </ul>
+    </div>
+  </section>
+
   <!-- How does it work -->
   <section class="mb-12">
     <h2 class="text-2xl font-bold text-foreground mb-6 pb-2 border-b border-border">
@@ -141,7 +245,7 @@ $ npx b3d publish --access public`} />
     <p class="text-muted-foreground mb-6">
       An npm-style registry maps package names to runtime implementations. Each package can
       include code for multiple Web3D runtimes (for example, different engines or
-      frameworks). In future, AI can be used to generate new runtime adapters for rendering
+      frameworks). AI can be used to generate new runtime adapters for rendering
       engines that do not exist yet.
     </p>
     <p class="text-muted-foreground mb-6">
@@ -153,52 +257,55 @@ $ npx b3d publish --access public`} />
       Typical folder structure:
     </h4>
     <p class="text-muted-foreground mb-3">
-      Here is an example layout for a reusable <span class="font-mono text-sm">shoe</span> smart object
+      Here is an example layout for a reusable <span class="font-mono text-sm">shoe</span> Web3D object
       inside your project:
     </p>
-    <CodeBlock code={`components/
-  shoe/
+    <CodeBlock code={`src/app/components/shoe/
     editor.jsx
     shoe.glb
     shoe.jsx
-    b3d.config.json
-    b3d.json`} />
+    banana3d.json
+banana3d.package.json
+package.json`} />
 
     <div class="bg-secondary/50 rounded-lg p-6 mt-6">
       <p class="text-foreground font-medium mb-3">The folder contains:</p>
       <ul class="space-y-2 text-muted-foreground">
-        <li><span class="font-mono text-sm text-primary">editor.jsx</span> - A development editor to edit, preview, and save configuration for how the object should look and behave.</li>
+        <li><span class="font-mono text-sm text-primary">editor.jsx</span> - A development editor to edit settings and save configuration for how the object should look and behave.</li>
         <li><span class="font-mono text-sm text-primary">shoe.glb</span> - The glTF 3D asset file.</li>
         <li><span class="font-mono text-sm text-primary">shoe.jsx</span> - The runtime code that provides interactivity.</li>
-        <li><span class="font-mono text-sm text-primary">b3d.config.json</span> - Runtime configuration used by the code (for example, presets or debug flags).</li>
-        <li><span class="font-mono text-sm text-primary">b3d.json</span> - Package metadata and code dependencies, required if you want to publish and share.</li>
+        <li><span class="font-mono text-sm text-primary">banana3d.json</span> - Runtime configuration used by the code, typically created by the editor.</li>
+        <li><span class="font-mono text-sm text-primary">banana3d.package.json</span> - Lists dependencies - see example below.</li>
+        <li><span class="font-mono text-sm text-primary">package.json</span> - Usual package.json created by npm</li>
       </ul>
     </div>
 
     <h4 class="text-lg font-semibold text-foreground mt-8 mb-3">
-      Code Dependencies example config:
+      Tracking installed models
     </h4>
     <p class="text-muted-foreground mb-4">
-      This code is packaged with the glTF file so it can easily be unpacked and run. We use
-      the npm ecosystem for managing dependencies, so if they are already installed in the
-      host project, they are not installed again.
+      banana3d.package.json tracks all installed models and any project wide configuration. 
     </p>
     <CodeBlock code={`{
-  "start": "main.jsx",
+  "config": {
+      "debug": true
+  },
   "dependencies": {
-    "@react-three/fiber": "^9.4.0",
-    "three": "^0.161.0"
+    "running-shoe": "^1.2.1"
   }
 }`} />
 
     <h4 class="text-lg font-semibold text-foreground mt-8 mb-3">
-      Store configuration for your reusable object(s):
+      Store configuration for your models:
     </h4>
     <p class="text-muted-foreground mb-4">
-      Example "b3d.config.json", stored in the root of the project.
+      Example "banana3d.json", stored in Web3D object folder.
     </p>
     <CodeBlock code={`{
-  "debug": true
+  "config": {
+    "initial_state": "open",
+    "initial_animation": "fold_open"
+  }
 }`} />
   </section>
 
@@ -208,8 +315,10 @@ $ npx b3d publish --access public`} />
       Request for Comments
     </h2>
     <p class="text-muted-foreground">
-      This spec is in active development. Feedback, ideas, or concerns? Open an issue on our
-      repository or get in touch so we can incorporate your use cases.
+      This spec is in active development. Feedback, ideas, or concerns? <a
+          href="https://github.com/Fruit3D/banana3D/issues/1"
+          class="underline underline-offset-2"
+        >Make a comment here</a>.
     </p>
   </section>
 
@@ -220,23 +329,35 @@ $ npx b3d publish --access public`} />
     </h2>
     
     <div class="space-y-8">
+
       <div>
         <h4 class="text-lg font-semibold text-foreground mb-2">
-          What happens if I have loads of 3D objects?
+          Why create banana3D?
         </h4>
         <p class="text-muted-foreground">
-          You can include multiple objects in a single package, but we recommend grouping
-          related objects together and avoiding very large, monolithic packages. Smaller,
-          focused packages are faster to install and easier to maintain.
+          Right now, creating and sharing high quality interactive objects is hard work. We want
+          to make reusable interactive objects for everyday items without reinventing the wheel
+          each time. banana3D aims to guide developers towards high quality objects, with
+          clearer standards for how we create, edit, and share interactive 3D on the web.
         </p>
       </div>
 
       <div>
         <h4 class="text-lg font-semibold text-foreground mb-2">
-          How is this different from the glTF Interactivity Spec?
+          Can I include many 3D glTF files in my package?
         </h4>
         <p class="text-muted-foreground">
-          We are aware of the glTF Interactivity Spec. Banana3D explores a different approach
+          You can include multiple glTF files in a single package, but we recommend smaller,
+          focused packages that are faster to install and easier to maintain.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold text-foreground mb-2">
+          How is this different from the glTF Interactivity Extension?
+        </h4>
+        <p class="text-muted-foreground">
+          We are aware of the glTF Interactivity Extension. banana3D explores a different approach
           that embraces simplicity, the npm ecosystem for dependencies, and a structure that
           makes it easy for AI tools to generate and maintain code.
         </p>
@@ -257,15 +378,15 @@ $ npx b3d publish --access public`} />
 
       <div>
         <h4 class="text-lg font-semibold text-foreground mb-2">
-          Why create Banana3D?
+          What if something isn't supported for a particular 3D runtime?
         </h4>
         <p class="text-muted-foreground">
-          Right now, creating and sharing high quality interactive objects is hard work. We want
-          to make reusable interactive objects for everyday items without reinventing the wheel
-          each time. Banana3D aims to guide developers towards high quality objects, with
-          clearer standards for how we create, edit, and share interactive 3D on the web.
+          It will be best effort support. Some features may not translate perfectly to all runtimes,
+          but we'll ask the AI to provide equivalent functionality where possible and note 
+          when changes have been made. 
         </p>
       </div>
+
     </div>
   </section>
 </Layout>
