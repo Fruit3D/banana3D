@@ -7,7 +7,7 @@ import CodeBlock from '../components/CodeBlock.astro';
   <!-- Title Section -->
   <div class="mb-12">
     <h2 class="text-4xl font-bold text-foreground mb-4">
-      Specification for Web3D Package Manager
+      Specification for a Web3D Package Manager
     </h2>
     <h3 class="text-xl font-semibold text-primary mb-6">
       Build and Share Web3D Interactivity
@@ -42,12 +42,10 @@ import CodeBlock from '../components/CodeBlock.astro';
       into any 3D web project and have them "just work".
     </p>
     <p class="text-lg text-muted-foreground leading-relaxed mb-4">
-      Web3D objects can be shared via an npm-style registry, and code can be ported between different Web3D
-      rendering engines. AI is used to generate multi-renderer code for seamless integration.
+      Web3D objects can be shared via an npm-style registry. Code can be automatically ported between different rendering engines—AI generates entirely new versions for seamless multi-runtime support.
     </p>
     <p class="text-base text-muted-foreground leading-relaxed">
-      Designed for web and 3D developers who want to create and reuse 3D interactivity
-      with minimum hassle.
+      A Web3D object is a self-contained package combining a glTF 3D model with the code that makes it interactive. Designed for web and 3D developers who want to create and reuse 3D interactivity with minimum hassle.
     </p>
   </div>
 
@@ -71,8 +69,8 @@ import CodeBlock from '../components/CodeBlock.astro';
     <p class="text-muted-foreground mb-4">
       To get started you'll need to have
       <a
-        href="http://nodejs.org"
-        class="text-primary hover:underline font-medium"
+        href="https://nodejs.org"
+        class="text-primary font-medium"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -205,8 +203,9 @@ $ npx b3d publish --access public`} />
           <h3 class="text-base font-semibold text-foreground">You must</h3>
         </div>
         <ul class="list-disc pl-5 space-y-2 text-muted-foreground">
-          <li>Create a self contained Typescript module that exports a function that creates the component to be rendered.</li>
-          <li>Test using "npx b3d editor" to make sure it works as expected before publishing.</li>
+          <li>Create a self-contained TypeScript module that exports a function that creates the component to be rendered.</li>
+          <li>Follow the banana3D configuration API for reading settings (documentation coming soon).</li>
+          <li>Test using <span class="font-mono text-sm">npx b3d editor</span> to make sure it works as expected before publishing.</li>
         </ul>
       </div>
 
@@ -228,6 +227,13 @@ $ npx b3d publish --access public`} />
       </div>
     </div>
 
+   <div class="mt-6 bg-secondary/30 rounded-lg p-5">
+      <h3 class="text-base font-semibold text-foreground mb-2">Creating an editor</h3>
+      <p class="text-muted-foreground">The only requirement for the editor is to use 
+        banana3D's configuration API to enable reading and writing of the banana3d.json file. This 
+        API provides functions for loading, modifying, and saving the configuration data.</p>
+    </div>
+
     <div class="mt-6 bg-secondary/30 rounded-lg p-5">
       <h3 class="text-base font-semibold text-foreground mb-2">Useful tools</h3>
       <ul class="list-disc pl-5 space-y-1 text-muted-foreground">
@@ -235,6 +241,15 @@ $ npx b3d publish --access public`} />
         <li><a href="https://github.com/pmndrs/leva/tree/main">Leva</a> for creating a minimal in-browser editor for tweaking configuration values.</li>
       </ul>
     </div>
+
+    <div class="mt-6 bg-secondary/30 rounded-lg p-5">
+      <h3 class="text-base font-semibold text-foreground mb-2">Tips</h3>
+      <p class="text-muted-foreground">
+         If you change the configuration, you can regenerate the Web3D object by running 
+         <span class="font-mono text-sm">npx b3d generate [package-name]</span>.
+      </p>
+    </div>
+
   </section>
 
   <!-- How does it work -->
@@ -249,8 +264,8 @@ $ npx b3d publish --access public`} />
       engines that do not exist yet.
     </p>
     <p class="text-muted-foreground mb-6">
-      Developers can optionally create an editing interface for changing the configuration 
-      of the 3D object.
+      Running the editor spins up a web server that hosts the web framework and 3D renderer so 
+      the component can be easily tested by itself.
     </p>
 
     <h4 class="text-lg font-semibold text-foreground mt-8 mb-3">
@@ -274,9 +289,9 @@ package.json`} />
         <li><span class="font-mono text-sm text-primary">editor.jsx</span> - A development editor to edit settings and save configuration for how the object should look and behave.</li>
         <li><span class="font-mono text-sm text-primary">shoe.glb</span> - The glTF 3D asset file.</li>
         <li><span class="font-mono text-sm text-primary">shoe.jsx</span> - The runtime code that provides interactivity.</li>
-        <li><span class="font-mono text-sm text-primary">banana3d.json</span> - Runtime configuration used by the code, typically created by the editor.</li>
+        <li><span class="font-mono text-sm text-primary">banana3d.json</span> - Configuration is saved to this file from the editor. It is written into the Javascript file for runtime.</li>
         <li><span class="font-mono text-sm text-primary">banana3d.package.json</span> - Lists dependencies - see example below.</li>
-        <li><span class="font-mono text-sm text-primary">package.json</span> - Usual package.json created by npm</li>
+        <li><span class="font-mono text-sm text-primary">package.json</span> - Usual package.json created by npm.</li>
       </ul>
     </div>
 
@@ -284,7 +299,7 @@ package.json`} />
       Tracking installed models
     </h4>
     <p class="text-muted-foreground mb-4">
-      banana3d.package.json tracks all installed models and any project wide configuration. 
+      banana3d.package.json tracks all installed models and any project-wide configuration. 
     </p>
     <CodeBlock code={`{
   "config": {
@@ -299,7 +314,7 @@ package.json`} />
       Store configuration for your models:
     </h4>
     <p class="text-muted-foreground mb-4">
-      Example "banana3d.json", stored in Web3D object folder.
+      Example <span class="font-mono text-sm">banana3d.json</span>, stored in the Web3D object's folder.
     </p>
     <CodeBlock code={`{
   "config": {
@@ -317,8 +332,7 @@ package.json`} />
     <p class="text-muted-foreground">
       This spec is in active development. Feedback, ideas, or concerns? <a
           href="https://github.com/Fruit3D/banana3D/issues/1"
-          class="underline underline-offset-2"
-        >Make a comment here</a>.
+          >Make a comment here</a>.
     </p>
   </section>
 
@@ -335,9 +349,9 @@ package.json`} />
           Why create banana3D?
         </h4>
         <p class="text-muted-foreground">
-          Right now, creating and sharing high quality interactive objects is hard work. We want
+          Right now, creating and sharing high-quality interactive objects is hard work. We want
           to make reusable interactive objects for everyday items without reinventing the wheel
-          each time. banana3D aims to guide developers towards high quality objects, with
+          each time. banana3D aims to guide developers towards well-structured, portable objects, with
           clearer standards for how we create, edit, and share interactive 3D on the web.
         </p>
       </div>
