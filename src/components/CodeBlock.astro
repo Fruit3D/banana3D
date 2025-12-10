@@ -1,0 +1,31 @@
+---
+interface Props {
+  code: string;
+}
+
+const { code } = Astro.props;
+const lines = code.trim().split('\n');
+---
+
+<pre class="code-block">
+<code>{lines.map((line, index) => (
+  <span class:list={[{ command: line.startsWith('$ ') }]}>{line}{index < lines.length - 1 ? '\n' : ''}</span>
+))}</code>
+</pre>
+
+<style>
+  .code-block {
+    background-color: hsl(var(--code-bg));
+    color: hsl(var(--code-text));
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    font-family: 'JetBrains Mono', monospace;
+    margin: 1rem 0;
+  }
+
+  .command {
+    color: #EEBE2F;
+  }
+</style>

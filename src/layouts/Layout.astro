@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-background">
+    <!-- Header -->
+    <header class="border-b border-border py-6">
+      <div class="container max-w-4xl mx-auto px-6 flex items-center gap-4">
+        <img
+          src="/banana-logo.jpg"
+          alt="Banana3D Logo"
+          class="w-12 h-12 object-contain"
+        />
+        <h1 class="text-3xl font-bold text-foreground">banana3D</h1>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container max-w-4xl mx-auto px-6 py-12">
+      <article class="prose prose-lg max-w-none">
+        <slot />
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-border py-12 mt-12">
+      <div class="container max-w-4xl mx-auto px-6 flex justify-center">
+        <a
+          href="https://www.fruit3d.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="transition-opacity hover:opacity-80"
+        >
+          <img
+            src="/fruit3d-logo.png"
+            alt="Fruit3D Logo"
+            class="h-10 object-contain"
+          />
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+</style>
