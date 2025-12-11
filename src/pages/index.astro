@@ -55,7 +55,7 @@ import CodeBlock from '../components/CodeBlock.astro';
     </h2>
     <ul class="list-disc pl-5 space-y-1 text-muted-foreground">
       <li>Install reusable Web3D objects into any web project using simple CLI commands.</li>
-      <li>Package your own glTF models together with interaction code and configuration.</li>
+      <li>Package your own glTF files together with interaction code and configuration.</li>
       <li>Edit, preview, and save object configurations in a browser-based editor.</li>
       <li>Publish and share objects through an npm-style registry for others to reuse.</li>
     </ul>
@@ -114,13 +114,13 @@ Tech stack discovered:
 three ^0.160.0
 Created config file: banana3d.config
 
-Use "npx b3d install [package-name]" to install your first model`} />
+Use "npx b3d install [package-name]" to install your first Web3D object`} />
     <p class="text-muted-foreground mb-4">
       This detects your tech stack and automatically configures your project, ready for first use. 
     </p>
 
     <h4 class="text-lg font-semibold text-foreground mt-8 mb-3">
-      Install your first interactive model:
+      Install your first Web3D object:
     </h4>
     <CodeBlock code={`$ cd src/components
 $ npx b3d install running-shoe
@@ -182,7 +182,7 @@ $ npx b3d publish --access public`} />
       <p class="text-foreground font-medium mb-3">The config options are:</p>
       <ul class="space-y-2 text-muted-foreground">
         <li><span class="font-mono text-sm text-primary">objects_path</span> - This is where new Web3D interactivity code will be installed</li>
-        <li><span class="font-mono text-sm text-primary">public_files</span> - Where 3D models are served from your web project. Any new glTF models will be copied here during installation</li>
+        <li><span class="font-mono text-sm text-primary">public_files</span> - Where glTF files are served from your web project. Any new glTF files will be copied here during installation</li>
       </ul>
     </div>
   </section>
@@ -296,10 +296,10 @@ package.json`} />
     </div>
 
     <h4 class="text-lg font-semibold text-foreground mt-8 mb-3">
-      Tracking installed models
+      Tracking installed Web3D objects
     </h4>
     <p class="text-muted-foreground mb-4">
-      banana3d.package.json tracks all installed models and any project-wide configuration. 
+      banana3d.package.json tracks all installed Web3D objects and any project-wide configuration. 
     </p>
     <CodeBlock code={`{
   "config": {
@@ -311,7 +311,7 @@ package.json`} />
 }`} />
 
     <h4 class="text-lg font-semibold text-foreground mt-8 mb-3">
-      Store configuration for your models:
+      Store configuration for your Web3D objects:
     </h4>
     <p class="text-muted-foreground mb-4">
       Example <span class="font-mono text-sm">banana3d.json</span>, stored in the Web3D object's folder.
